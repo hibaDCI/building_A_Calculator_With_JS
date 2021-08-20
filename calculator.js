@@ -43,7 +43,7 @@ document.querySelectorAll(".orange").forEach((btn) => {
     if (btn.innerText === "=") {
         btn.addEventListener("click", () => {
             let result = eval(display.value.replace("x", "*"));
-            display.value = result;
+            display.value = result.toFixed(2);
         });
     }
 });
