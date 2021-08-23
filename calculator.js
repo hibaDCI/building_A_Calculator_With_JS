@@ -2,6 +2,47 @@
 //---------=^.^=---------
 // For operator buttons
 
+//for more DRY code with switch case 
+const onBtnClick = () => {
+  Array.from(allBtn).forEach((btn, index) => {
+    btn.addEventListener("click", () => {
+      const containsOperator = (char) => display.value.endsWith(char);
+      let isOperatorDisabled = (["+", "*", "/", "-", "%", "+/-"].some(containsOperator))
+      console.log(btn.innerText, "is called")
+
+      switch (btn.innerText) {
+        case "c":
+          display.value = ""
+          break;
+        case "+":
+        case "-":
+        case "/":
+        case "%":
+        case "*":
+        case "+/-":
+          if (display.value !== "" && !isOperatorDisabled) {
+            (display.value += btn.innerText)
+          }
+
+          break;
+
+        case "=":
+          let result = eval(display.value)
+          display.value = result.toFixed(2)
+
+        default:
+          console.log(btn.innerText)
+          display.value += btn.innerText
+      }
+    })
+  })
+}
+
+onBtnClick()
+
+
+
+
 const display = document.querySelector("#display");
 
 let btns = document.querySelectorAll(".btn");
@@ -14,8 +55,8 @@ Array.from(btns).forEach((btn) => {
   }
 });
 
-
-
+// Hiba (feedback )
+/////
 //---------=^.^=---------
 // For orange buttons
 
